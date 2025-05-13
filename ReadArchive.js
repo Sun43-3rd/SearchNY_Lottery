@@ -1,7 +1,7 @@
-import * as Tools from '/AnalysisTools1/.js'
+import * as Tools from '/SearchNY_Lottery/AnalysisTools1.js'
 
-import * as DATANY3 from 'NY3.js'
-import * as DATANY4 from 'NY4.js'
+import * as DATANY3 from '/SearchNY_Lottery/NY3.js'
+import * as DATANY4 from '/SearchNY_Lottery/NY4.js'
 
 //Data-Collection
 function Daily_Array(type, interger, raw){
