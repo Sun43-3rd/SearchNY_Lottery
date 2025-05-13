@@ -1,3 +1,8 @@
+html{
+   height: 100%; 
+}
+
+
 body{
     background-color: rgb(1, 31, 68);
     color: antiquewhite;
@@ -24,8 +29,6 @@ body{
     flex-direction: column;
     row-gap: 35px;
     position: relative;
-    justify-self: center;
-    align-self: center;
     top: 25px;
     left: 0%;
 }
@@ -37,11 +40,9 @@ tr{
     justify-content: space-around;
 }
 
-td{border: 1px solid white;
+td{
     display: flex;
     width: 90px;
-    justify-content: flex-start;
-    align-items: flex-start;
 }
 
 
@@ -57,38 +58,7 @@ td{border: 1px solid white;
     height: 75px;
 }
 
-.Label{
-    font-family: "Roboto", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-}
 
-.POS{
-    width: 100px;
-    height: 200px;
-    border: 5px solid rgb(225, 225, 225);
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
-}
-
-.r-text{
-    font-family: "Roboto", sans-serif;
-    font-size: 64pt;
-    font-weight: 400;
-}
-
-.Gen-Wrap{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    column-gap: 10px;
-    width: 500px;
-    height: 250px;
-    border: none;
     position: relative;
     top: 80%;
     left: 10%;
