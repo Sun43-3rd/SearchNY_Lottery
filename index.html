@@ -6,26 +6,28 @@
         <title>SearchNY_Lottery</title>
     </head>
     <body>
-        <div class="Wrapper-3">
-            <div class="Wrapper-2">
+        <div class="Wrapper-2">
+            <div class="Wrapper-1">
                 <input id="input" type="search"> 
-                <label class="Label"> Drawing </label>
-                <select id="Select-Drawing-Type">
-                    <option value= "3" > Numbers </option>
-                    <option value= "4" > Win4 </option>
-                </select>
-                <span> Accept Box</span>
-                <input id="Box" type="checkbox">
+                <div class="Nav-Item">
+                    <span class="Label"> Drawing </apn>
+                    <select id="Select-Game">
+                        <option value= "3" > Numbers </option>
+                        <option value= "4" > Win4 </option>
+                    </select>
+                </div>
+                <div class="Nav-Item">
+                    <span class="Label">Accept Box</span>
+                    <input id="Box" type="checkbox">
+                </div>
             </div>
-            <div>
                 <table>
                     <tbody id="table">
                         <tr id="T-Header">
-                            <td>Weekday</td><td>Month</td><td>Day</td><td>Year</td><td>Time</td><td>Drawing</td>
+                            <td><span>Weekday</span></td><td><span>Month</span></td><td><span>Day</span></td><td><span>Year</span></td><td><span>Time</span></td><td><span>Drawing</span></td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
         </div>
         <script src="/SearchNY_Lottery/Search.js" type="module"></script>
     </body>
