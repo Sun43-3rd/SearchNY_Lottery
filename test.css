@@ -1,0 +1,96 @@
+body{
+    background-color: rgb(1, 31, 68);
+    color: antiquewhite;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.Wrapper{
+    margin-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 250px;
+}
+
+.Wrapper-2{
+    flex-direction: row;
+    column-gap: 50px;
+}
+
+.Wrapper-3{
+    display: flex;
+    flex-direction: column;
+    row-gap: 35px;
+    position: relative;
+    justify-self: center;
+    align-self: center;
+    top: 25px;
+    left: 0%;
+}
+
+
+tr{
+    display: flex;
+    width: 540px;
+    justify-content: space-around;
+}
+
+td{border: 1px solid white;
+    display: flex;
+    width: 90px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+.hidden{
+    visibility: hidden;
+}
+
+.Input{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 75px;
+}
+
+.Label{
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+
+.POS{
+    width: 100px;
+    height: 200px;
+    border: 5px solid rgb(225, 225, 225);
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+}
+
+.r-text{
+    font-family: "Roboto", sans-serif;
+    font-size: 64pt;
+    font-weight: 400;
+}
+
+.Gen-Wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    column-gap: 10px;
+    width: 500px;
+    height: 250px;
+    border: none;
+    position: relative;
+    top: 80%;
+    left: 10%;
+
+}
