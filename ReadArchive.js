@@ -1,11 +1,7 @@
-import * as Tools from '/NP_Construct/NP_Javascript/NP_DataExtraction/NP_AnalysisTools1.js'
-import * as DATACT3 from '/NP_Construct/NP_Javascript/NP_Archive/NP_CT3.js'
-import * as DATACT4 from '/NP_Construct/NP_Javascript/NP_Archive/NP_CT4.js'
-import * as DATANY3 from '/NP_Construct/NP_Javascript/NP_Archive/NP_NY3.js'
-import * as DATANY4 from '/NP_Construct/NP_Javascript/NP_Archive/NP_NY4.js'
-import * as DATANY10 from '/NP_Construct/NP_Javascript/NP_Archive/NP_NY10.js'
-import * as DATATX3 from '/NP_Construct/NP_Javascript/NP_Archive/NP_TX3.js'
-import * as DATATX4 from '/NP_Construct/NP_Javascript/NP_Archive/NP_TX4.js'
+import * as Tools from '/AnalysisTools1/.js'
+
+import * as DATANY3 from 'NY3.js'
+import * as DATANY4 from 'NY4.js'
 
 //Data-Collection
 function Daily_Array(type, interger, raw){
