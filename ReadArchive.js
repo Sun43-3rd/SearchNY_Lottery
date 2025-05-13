@@ -39,9 +39,7 @@ function Extract_Data(type, size, raw, sheets = false){
 
 const Pick3_Raw = [[await DATANY3.NY3LIVE, false]].map((x) => Extract_Data(3, Object.values(x[0]).length - 1, x[0], x[1])).map((x) => [x, x.map((y) => False_Array(y, 0, 9, false)), x.map((y) => Tools.R_Duplicate(y)), x.map((y) => Tools.R_Duplicate(False_Array(y, 0, 9, false)))])
 const Pick4_Raw = [[await DATANY4.NY4LIVE, false]].map((x) => Extract_Data(4, Object.values(x[0]).length - 1, x[0], x[1])).map((x) => [x, x.map((y) => False_Array(y, 0, 9, false)), x.map((y) => Tools.R_Duplicate(y)), x.map((y) => Tools.R_Duplicate(False_Array(y, 0, 9, false)))])
-const Pick10_Raw = [DATANY10.NY10HISTORY].map((x) => Extract_Data(10, 999, x)).map((x) => [x, x.map((y) => False_Array(y, 1, 80, true))])
 
 export let NY3_Drawings = [await DATANY3.NY3LIVE, Pick3_Raw[0]];
 export let NY4_Drawings = [await DATANY4.NY4LIVE, Pick4_Raw[0]];
-export let NY10_Drawings = [DATANY10.NY10HISTORY, Pick10_Raw[0]];
-export let TX3_Drawings = [DATATX3.TX3HISTORY];
+
