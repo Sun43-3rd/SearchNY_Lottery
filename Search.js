@@ -26,10 +26,10 @@ function SetUp(){
         if (event.key === 'Enter') {
             const drawing = ( drawingtype.value == '3' ? Arch.NY3_Drawings: Arch.NY4_Drawings)
             const date = (drawingtype.value == '3' ? Get_Dates(drawing[0], drawingtype.value) : Get_Dates(drawing[0], drawingtype.value));
-            const data = drawing[1][0].map((x, i) => [date[i], x, Tools.Box_C(x)])
+            const data = drawing[1].map((x, i) => [date[i], x, Tools.Box_C(x)])
             let search = input.value.split('')
             console.log(search)
-
+            
             b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = data.filter((x) => Tools.Match_ArExact(x[1], search));
             console.log(results)
 
