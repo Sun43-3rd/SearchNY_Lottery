@@ -10,4 +10,3 @@ async function fetchData(link) {
   
   fetchData();
 
-export const NY3HISTORY = []
