@@ -32,6 +32,8 @@ function SetUp(){
 
             b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = data.filter((x) => Tools.Match_ArExact(x[1], search));
             console.log(results)
+
+           Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header').map((x) => x.remove())
             
             if(results.length === 0){
                 const span = document.createElement('span'); span.id ='NA'; span.innerHTML = 'N/A'; span.style.fontSize = '24pt'; 
@@ -46,7 +48,6 @@ function SetUp(){
             const regex = /^(\w+),\s+(\w+)\s+(\d+),\s+(\d{4})$/;
             results = results.map((x) => x[0][0].split(regex).concat(x[0][1], x[1].join('')).filter((x) => x !== ''))
 
-            Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header').map((x) => x.remove())
             results.map((x) => 
                 {const tr = document.createElement('tr'); tr.className = 't-row'
                      x.map((y) => {const td = document.createElement('td'); td.className = 't-data';
