@@ -45,6 +45,8 @@ function SetUp(){
                     else{table.appendChild(span)}
                 }
            else{
+               Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header').map((x) => x.remove())
+            
             const regex = /^(\w+),\s+(\w+)\s+(\d+),\s+(\d{4})$/;
             results = results.map((x) => x[0][0].split(regex).concat(x[0][1], x[1].join('')).filter((x) => x !== ''))
 
