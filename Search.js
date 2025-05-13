@@ -1,5 +1,5 @@
-import * as Tools from '/AnalysisTools1.js'
-import * as Arch from '/ReadArchive.js'
+import * as Tools from '/SearchNY_Lottery/AnalysisTools1.js'
+import * as Arch from '/SearchNY_Lottery/ReadArchive.js'
 
 
 const options = {
