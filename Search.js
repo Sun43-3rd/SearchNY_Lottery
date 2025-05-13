@@ -33,7 +33,7 @@ function SetUp(){
             b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = data.filter((x) => Tools.Match_ArExact(x[1], search));
             console.log(results)
 
-           Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header' & x.id !== 'NA').map((x) => x.remove())
+           Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header' && x.id !== 'NA').map((x) => x.remove())
             
             if(results.length === 0){
                 const span = document.createElement('span'); span.id ='NA'; span.innerHTML = 'N/A'; span.style.fontSize = '24pt'; 
