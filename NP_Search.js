@@ -1,7 +1,5 @@
-import * as Tools from '/NP_Construct/NP_Javascript/NP_DataExtraction/NP_AnalysisTools1.js'
-import * as Tools2 from '/NP_Construct/NP_Javascript/NP_DataExtraction/NP_AnalysisTools2.js'
-import * as Arch from '/NP_Construct/NP_Javascript/NP_DataExtraction/NP_ReadArchive.js'
-import * as NY from '/NP_Construct/NP_Javascript/NP_Archive/NP_NYData.js'
+import * as Tools from '/AnalysisTools1.js'
+import * as Arch from '/ReadArchive.js'
 
 
 const options = {
