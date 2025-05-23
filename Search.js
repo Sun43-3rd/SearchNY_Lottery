@@ -9,8 +9,9 @@ const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
 
 const regex = /^(\w+),\s+(\w+)\s+(\d+),\s+(\d{4})$/;
 
+
 function SetUp(){
-    const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input"); const table = document.getElementById('table')
+    const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input"); const table = document.getElementById('table'); const t_header = document.getElementById('T-Header');
     let results = [];
 
     input.addEventListener('keydown', function(event) {
@@ -38,14 +39,48 @@ function SetUp(){
            else{
                Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header').map((x) => x.remove());
             
-            results = results.map((x) => x[0][0].split(regex).concat(x[0][1], x[1].join('')).filter((x) => x !== ''));
+            results = results.map((x) => [x, x[0][0].split(regex).concat(x[0][1], x[1].join('')).filter((x) => x !== '')]);
 
             results.map((x) => 
-                {const tr = document.createElement('tr'); tr.className = 't-row';
-                     x.map((y) => {const td = document.createElement('td'); td.className = 't-data';
+                {const tr = document.createElement('tr'); 
+                    tr.date = new Date(x[0][0][0]); tr.Weekday = tr.date.getDay(); tr.Month = tr.date.getMonth(); tr.Day = tr.date.getDate(); tr.Year = tr.date.getYear(); tr.Time = ['Midday', 'Evening'].indexOf(x[0][0][1]); tr.Result = Number(x[0][1].join(''))
+                     x[1].map((y) => {const td = document.createElement('td'); td.className = 't-data';
                         ; td.textContent = y; tr.appendChild(td)}); table.appendChild(tr)})
                      }
         }})
+
+         
+        function Sort_By(column){
+            const rows = Array.prototype.filter.call(table.children,(x) => x !== t_header);
+            const up = String.fromCharCode(8593); const down = String.fromCharCode(8595)
+            const sort_by = column.firstElementChild.innerHTML.trimEnd(); 
+            const symbol = document.getElementById('sort');
+            Array.prototype.map.call(t_header.children, (x) => x.style.color = 'antiquewhite')
+           
+            if(symbol.innerHTML === '' || column.lastElementChild.id !== 'sort'){
+            symbol.innerHTML = up;  column.style.color = 'black'; column.appendChild(symbol);
+       
+            Array.prototype.sort.call(rows, (a, b) => a?.[sort_by] - b?.[sort_by])
+            table.replaceChildren(t_header, ...rows)
+            
+           } else if(symbol.innerHTML === up){
+            symbol.innerHTML = down; column.style.color = 'black'; column.appendChild(symbol);
+
+            Array.prototype.sort.call(rows, (a, b) => b?.[sort_by] - a?.[sort_by])
+            table.replaceChildren(t_header, ...rows)
+            
+            
+           } else if(symbol.innerHTML === down){
+            symbol.innerHTML = ''; column.style.color = 'antiquewhite'; column.appendChild(symbol);
+          
+            Array.prototype.sort.call(rows, (a, b) => b.date - a.date)
+            table.replaceChildren(t_header, ...rows) 
+           }  
+            
+        }
+           
+        Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => Sort_By(x)))
+
 }
 
 window.onload = 

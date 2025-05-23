@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" shrink-to-fit="no", maximum-scale="1" />
         <link rel="stylesheet" href="/SearchNY_Lottery/web.css">
         <title>SearchNY_Lottery</title>
     </head>
     <body>
         <div class="Wrapper-2">
             <div class="Wrapper-1">
-                <input id="input" type="search"> 
                 <div class="Nav-Item">
-                    <span class="Label"> Drawing </apn>
+                    <span class="Label">Search</span>
+                    <input id="input" type="search">
+                </div>
+                 
+                <div class="Nav-Item">
+                    <span class="Label">Drawing</span>
                     <select id="Select-Game">
                         <option value= "3" > Numbers </option>
                         <option value= "4" > Win4 </option>
@@ -24,7 +28,7 @@
                 <table>
                     <tbody id="table">
                         <tr id="T-Header">
-                            <td><span>Weekday</span></td><td><span>Month</span></td><td><span>Day</span></td><td><span>Year</span></td><td><span>Time</span></td><td><span>Drawing</span></td>
+                            <td><span>Weekday</span></td><td><span>Month</span></td><td><span>Day</span></td><td><span>Year</span><span id="sort"></span></td><td><span>Time</span></td><td><span>Result</span></td>
                         </tr>
                     </tbody>
                 </table>
