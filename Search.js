@@ -11,14 +11,12 @@ function SetUp(){
     const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input"); const table = document.getElementById('table'); const t_header = document.getElementById('T-Header');
     const symbol = document.getElementById('sort'); let results = [];
 
-    input.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            const drawing = (game.value == '3' ? Arch.NY3_Drawings: game.value == '4' ? Arch.NY4_Drawings : isNaN())
-            const date = (game.value == '3' || game.value == '4' ? Get_Dates(drawing[0], game.value) : isNaN());
-            const data = (game.value == '3' || game.value == '4' ? drawing[1].map((x, i) => [date[i], x, Tools.Box_C(x)]) : isNaN())
-            let search = input.value;
+    function Search_NY(){
+        const drawing = (game.value == '3' ? Arch.NY3_Drawings: game.value == '4' ? Arch.NY4_Drawings : isNaN())
+        const date = (game.value == '3' || game.value == '4' ? Get_Dates(drawing[0], game.value) : isNaN());
+        const data = (game.value == '3' || game.value == '4' ? drawing[1].map((x, i) => [date[i], x, Tools.Box_C(x)]) : isNaN())
+        let search = input.value;
             
-
             if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1))
                 {results = data.filter((x) => x[0].join(',').toLowerCase().includes(search.toLowerCase())); 
             }
@@ -56,8 +54,6 @@ function SetUp(){
                      Array.prototype.map.call(t_header.children, (x) => x.style.color = 'antiquewhite')
             
             }
-        })
-
          
         function Sort_By(column){
             const rows = Array.prototype.filter.call(table.children,(x) => x !== t_header);
@@ -88,6 +84,7 @@ function SetUp(){
             
         }
            
+        input.addEventListener('keydown', (event) => {if(event.key.toString() === 'Enter'){Search_NY()}})
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => Sort_By(x)))
 
 }
