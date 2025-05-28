@@ -84,8 +84,8 @@ function SetUp(){
             
         }
            
-        input.keydown = (event) => {if(event.code === 'Enter'){Search_NY()}})
-        Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => Sort_By(x)))
+        input.onkeydown = (event) => {if(event.code === 'Enter'){Search_NY()}})
+        Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
 
 }
 
