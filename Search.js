@@ -8,7 +8,7 @@ function Get_Dates(x, y){return x.filter((x) => x[(y == 3 ? 'evening_daily':'eve
 
 
 function SetUp(){
-    const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input");  const e = document.getElementById("event");const table = document.getElementById('table'); const t_header = document.getElementById('T-Header');
+    const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input"); const table = document.getElementById('table'); const t_header = document.getElementById('T-Header');
     const symbol = document.getElementById('sort'); let results = [];
 
     function Search_NY(){
@@ -84,7 +84,7 @@ function SetUp(){
             
         }
            
-        input.addEventListner('keydown', (event) => {if(event.key == 'Enter'){e.innerHTML = event.key; Search_NY()}}) 
+        input.addEventListener('keydown', (event) => {if(event.key == 'Enter' || event.code == 'Enter'){Search_NY()}}) 
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
 
 }
