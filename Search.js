@@ -84,7 +84,7 @@ function SetUp(){
             
         }
            
-        form.onsubmit = () => {Search_NY()} 
+        form.onsubmit = (event) => {Search_NY() + event.preventDefault()} 
         Array.prototype.map.call(t_header.children, ((x) => {x.onmousedown = () => {Sort_By(x)}; x.ontouch = () => {Sort_By(x)};}))
 
 }
