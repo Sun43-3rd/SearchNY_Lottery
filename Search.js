@@ -60,7 +60,7 @@ function SetUp(){
             const up = String.fromCharCode(8593); const down = String.fromCharCode(8595)
             const sort_by = column.firstElementChild.innerHTML.trimEnd(); 
             
-            Array.prototype.map.call(t_header.children, (x) => x.style.color = 'antiquewhite')
+            Array.prototype.map.call(t_header.children, (x) => x.style.color = 'white')
            
             if(symbol.innerHTML === '' || column.lastElementChild.id !== 'sort'){
             symbol.innerHTML = up;  column.style.color = 'silver'; column.appendChild(symbol);
@@ -76,7 +76,7 @@ function SetUp(){
             
             
            } else if(symbol.innerHTML === down){
-            symbol.innerHTML = ''; column.style.color = 'antiquewhite'; column.appendChild(symbol);
+            symbol.innerHTML = ''; column.style.color = 'white'; column.appendChild(symbol);
           
             Array.prototype.sort.call(rows, (a, b) => b.date - a.date)
             table.replaceChildren(t_header, ...rows) 
