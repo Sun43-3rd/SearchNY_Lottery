@@ -84,8 +84,8 @@ function SetUp(){
             
         }
            
-        input.onkeydown = (event) => {if(event.key === 'Enter'){event.preventDefault(); e.innerHTML = event.key; Search_NY()}} 
-        Array.prototype.map.call(t_header.children, ((x) => x.onmousedown = () => {Sort_By(x)}))
+        input.addEventListner('keydown', (event) => {if(event.key == 'Enter'){e.innerHTML = event.key; Search_NY()}}) 
+        Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
 
 }
 
