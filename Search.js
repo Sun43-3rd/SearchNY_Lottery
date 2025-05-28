@@ -85,8 +85,8 @@ function SetUp(){
         }
            
         input.onkeydown = (event) => {
-            (event.key === 'Enter' || event.code === 'Enter' || event.charCode == 13 ) ? Search_NY() : console.log('waiting...')};
-        Array.prototype.map.call(t_header.children, ((x) => [x.onmousedown, x.onclick, x.ontouch].map((y) => y = () => {Sort_By(x)})))
+            (event.key === 'Enter' || event.keyCode == 13 ) ? Search_NY() : console.log('waiting...')};
+        Array.prototype.map.call(t_header.children, ((x) => {x.onmousedown = () => {Sort_By(x)}; x.ontouch = () => {Sort_By(x)};}))
 
 }
 
