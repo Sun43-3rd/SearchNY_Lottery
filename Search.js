@@ -1,4 +1,4 @@
-import * as Tools from '/SearchNY_Lottery/AnalysisTools1.js'
+import * as Tools from '/SearchNY_Lottery/Tools1.js'
 import * as Arch from '/SearchNY_Lottery/ReadArchive.js'
 
 const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
