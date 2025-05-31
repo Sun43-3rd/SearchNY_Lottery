@@ -22,7 +22,7 @@ function SetUp(){
             }
             else{
             search = search.split('')
-            b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = (search.length < game.value ? data.filter((x) => x[1].join('').includes(search)) : data.filter((x) => Tools.Match_ArExact(x[1], search)))
+            b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = (search.length < game.value ? data.filter((x) => x[1].join('').includes(search.join(''))) : data.filter((x) => Tools.Match_ArExact(x[1], search)))
             };
             
             
