@@ -17,12 +17,12 @@ function SetUp(){
         const data = (game.value == '3' || game.value == '4' ? drawing[1].map((x, i) => [date[i], x, Tools.Box_C(x)]) : isNaN())
         let search = input.value;
             
-            if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1))
-                {results = data.filter((x) => x[0].join(',').toLowerCase().includes(search.toLowerCase())); 
+            if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1) || search.toLowerCase().includes('date'))
+                {results = data.filter((x) => x[0].join(',').toLowerCase().includes(search.toLowerCase().replace('date ', '').replace('date',''))); 
             }
             else{
             search = search.split('')
-            b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = data.filter((x) => Tools.Match_ArExact(x[1], search))
+            b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = (search.length < game.value ? data.filter((x) => x[2].includes(search)) : data.filter((x) => Tools.Match_ArExact(x[1], search)))
             };
             
             
