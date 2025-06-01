@@ -85,6 +85,5 @@ function SetUp(){
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
 }
 
-window.onload = function(){
-    SetUp()
-}
+window.onload = SetUp()
+
