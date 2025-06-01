@@ -17,7 +17,7 @@ function SetUp(){
         let search = input.value;
             
             if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1) || search.toLowerCase().includes('date'))
-                {const new_search = (!search.includes('date') ? search.toLowerCase() : (search.toLowerCase().replaceAll(" ", "").replace('date', "").length == 2 ? search.toLowerCase().replaceAll(" ", "").replace('date', "") + ",") : search.toLowerCase().replaceAll(" ", "").replace('date', "")))
+                {const new_search = (!search.includes('date') ? search.toLowerCase() : (search.toLowerCase().replaceAll(" ", "").replace('date', "").length == 2 ? search.toLowerCase().replaceAll(" ", "").replace('date', "") + "," : search.toLowerCase().replaceAll(" ", "").replace('date', "")))
                     results = data.filter((x) => x[0].join(',').toLowerCase().includes(new_search)); 
             }
             else{
@@ -81,9 +81,16 @@ function SetUp(){
            }  
             
         }
+        
         input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){Search_NY()}}) 
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
+        
+        input.focus()
 }
 
-window.onload = SetUp()
+window.onload = function(){
+   SetUp() 
+
+}
+
 
