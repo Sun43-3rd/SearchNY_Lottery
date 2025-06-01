@@ -51,46 +51,47 @@ function SetUp(){
                 symbol.innerHTML === '' 
                 Array.prototype.map.call(t_header.children, (x) => x.style.color = 'antiquewhite')
             
-            }
+    }
          
-        function Sort_By(column){
-            const rows = Array.prototype.filter.call(table.children,(x) => x !== t_header);
-            const up = String.fromCharCode(8593); const down = String.fromCharCode(8595)
-            const sort_by = column.firstElementChild.innerHTML.trimEnd(); 
+    function Sort_By(column){
+        const rows = Array.prototype.filter.call(table.children,(x) => x !== t_header);
+        const up = String.fromCharCode(8593); const down = String.fromCharCode(8595)
+        const sort_by = column.firstElementChild.innerHTML.trimEnd(); 
             
-            Array.prototype.map.call(t_header.children, (x) => x.style.color = 'white')
+        Array.prototype.map.call(t_header.children, (x) => x.style.color = 'white')
            
-            if(symbol.innerHTML === '' || column.lastElementChild.id !== 'sort'){
+        if(symbol.innerHTML === '' || column.lastElementChild.id !== 'sort'){
             symbol.innerHTML = up;  column.style.color = 'silver'; column.appendChild(symbol);
        
             Array.prototype.sort.call(rows, (a, b) => a?.[sort_by][0] - b?.[sort_by][0])
             table.replaceChildren(t_header, ...rows)
             
-           } else if(symbol.innerHTML === up){
+        } 
+
+        else if(symbol.innerHTML === up){
             symbol.innerHTML = down; column.style.color = 'silver'; column.appendChild(symbol);
 
             Array.prototype.sort.call(rows, (a, b) => b?.[sort_by][0] - a?.[sort_by][0])
             table.replaceChildren(t_header, ...rows)
-            
-            
-           } else if(symbol.innerHTML === down){
+                
+        } 
+
+        else if(symbol.innerHTML === down){
             symbol.innerHTML = ''; column.style.color = 'white'; column.appendChild(symbol);
           
             Array.prototype.sort.call(rows, (a, b) => b.date - a.date)
             table.replaceChildren(t_header, ...rows) 
-           }  
+          
+        }  
             
-        }
+    }
         
         input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){Search_NY()}}) 
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
         
-        input.focus()
 }
 
-window.onload = function(){
-   SetUp() 
+window.onload = SetUp() 
 
-}
 
 
