@@ -1,12 +1,12 @@
 import * as Tools from '/SearchNY_Lottery/Tools.js'
 import * as Arch from '/SearchNY_Lottery/ReadArchive.js'
 
-const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-
-function Get_Dates(x, y){return x.filter((x) => x[(y == 3 ? 'evening_daily':'evening_win_4')] !== undefined).map((x) => x[(y == 3 ? 'midday_daily':'midday_win_4')] !== undefined? [[new Date(x['draw_date']), 'Evening'], [new Date(x['draw_date']), 'Midday']] : [[new Date(x['draw_date']), 'Evening']]).flat().map((x) => [x[0].toLocaleDateString('en-US', options), x[1]])
-}
-
 function SetUp(){
+    const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+
+    function Get_Dates(x, y){return x.filter((x) => x[(y == 3 ? 'evening_daily':'evening_win_4')] !== undefined).map((x) => x[(y == 3 ? 'midday_daily':'midday_win_4')] !== undefined? [[new Date(x['draw_date']), 'Evening'], [new Date(x['draw_date']), 'Midday']] : [[new Date(x['draw_date']), 'Evening']]).flat().map((x) => [x[0].toLocaleDateString('en-US', options), x[1]])
+    }
+
     const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input"); const table = document.getElementById('table'); const t_header = document.getElementById('T-Header');
     const symbol = document.getElementById('sort'); let results = [];
 
@@ -17,14 +17,14 @@ function SetUp(){
         let search = input.value;
             
             if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1) || search.toLowerCase().includes('date'))
-                {const new_search = (!search.includes('date') ? search.toLowerCase() : (search.toLowerCase().replaceAll(" ", "").replace('date', "").length == 2 ? search.toLowerCase().replaceAll(" ", "").replace('date', "") + "," : search.toLowerCase().replaceAll(" ", "").replace('date', "")))
-                    results = data.filter((x) => x[0].join(',').toLowerCase().includes(new_search)); 
+                {const new_search = (!search.toLowerCase().includes('date') ? search.toLowerCase() : (search.toLowerCase().replaceAll(" ", "").replace('date', "").length <= 2 ? " " + search.toLowerCase().replaceAll(" ", "").replace('date', "") + "," : search.toLowerCase().replaceAll(" ", "").replace('date', "")))
+                    results = data.filter((x) => x[0].join(' ').toLowerCase().includes(new_search)); 
             }
+
             else{
-            search = search.split('')
-            b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = (search.length < game.value ? data.filter((x) => x[1].join('').includes(search.join(''))) : data.filter((x) => Tools.Match_ArExact(x[1], search)))
+                search = search.split('')
+                b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = (search.length < game.value ? data.filter((x) => x[1].join('').includes(search.join(''))) : data.filter((x) => Match_ArExact(x[1], search)))
             };
-            
             
            Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header' && x.id !== 'NA').map((x) => x.remove())
             
@@ -37,6 +37,7 @@ function SetUp(){
                     }
                     else{table.appendChild(span)}
                 }
+
            else{
                Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header').map((x) => x.remove());
                
@@ -88,10 +89,8 @@ function SetUp(){
         
         input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){Search_NY()}}) 
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
-        
+        input.focus()
 }
 
-window.onload = SetUp() 
-
-
-
+ 
+window.onload = SetUp()

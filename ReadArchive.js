@@ -32,6 +32,6 @@ function Extract_Data(type, size, raw, sheets = false){
 const Pick3_Raw = [[await DATANY3.NY3LIVE, false]].map((x) => Extract_Data(3, Object.values(x[0]).length - 1, x[0], x[1]))
 const Pick4_Raw = [[await DATANY4.NY4LIVE, false]].map((x) => Extract_Data(4, Object.values(x[0]).length - 1, x[0], x[1]))
 
-export let NY3_Drawings = [await DATANY3.NY3LIVE, Pick3_Raw[0]];
-export let NY4_Drawings = [await DATANY4.NY4LIVE, Pick4_Raw[0]];
+export const NY3_Drawings = [await DATANY3.NY3LIVE, Pick3_Raw[0]];
+export const NY4_Drawings = [await DATANY4.NY4LIVE, Pick4_Raw[0]];
 

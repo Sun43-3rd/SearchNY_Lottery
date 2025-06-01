@@ -35,5 +35,3 @@ export function Box_C(array){
 }
 
 
-
- 

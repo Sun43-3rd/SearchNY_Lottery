@@ -53,7 +53,6 @@ select{
     justify-content: center;
     column-gap: 10px;
     width: 100%;
-    max-width: calc(max-content + 5%);
     border: 1px solid white;
 }
 
