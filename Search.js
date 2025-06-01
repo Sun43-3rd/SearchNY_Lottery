@@ -6,7 +6,6 @@ const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
 function Get_Dates(x, y){return x.filter((x) => x[(y == 3 ? 'evening_daily':'evening_win_4')] !== undefined).map((x) => x[(y == 3 ? 'midday_daily':'midday_win_4')] !== undefined? [[new Date(x['draw_date']), 'Evening'], [new Date(x['draw_date']), 'Midday']] : [[new Date(x['draw_date']), 'Evening']]).flat().map((x) => [x[0].toLocaleDateString('en-US', options), x[1]])
 }
 
-
 function SetUp(){
     const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input"); const table = document.getElementById('table'); const t_header = document.getElementById('T-Header');
     const symbol = document.getElementById('sort'); let results = [];
@@ -18,7 +17,8 @@ function SetUp(){
         let search = input.value;
             
             if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1) || search.toLowerCase().includes('date'))
-                {results = data.filter((x) => x[0].join(',').toLowerCase().includes(search.toLowerCase().replace('date ', '').replace('date',''))); 
+                {const new_search = (!search.includes('date') ? search.toLowerCase() : (search.toLowerCase().replaceAll(" ", "").replace('date', "").length == 2 ? search.toLowerCase().replaceAll(" ", "").replace('date', "") + ",") : search.toLowerCase().replaceAll(" ", "").replace('date', "")))
+                    results = data.filter((x) => x[0].join(',').toLowerCase().includes(new_search)); 
             }
             else{
             search = search.split('')
@@ -39,19 +39,17 @@ function SetUp(){
                 }
            else{
                Array.prototype.filter.call(table.children, (x) => x.id !== 'T-Header').map((x) => x.remove());
-            
-            
+               
                results.map((x) => 
                 {const tr = document.createElement('tr'); 
                     tr.date = new Date(x[0][0]); 
                     tr.Weekday = [tr.date.getDay(), Intl.DateTimeFormat('en-US', {'weekday': 'long'}).format(tr.date)]; tr.Month = [tr.date.getMonth(), Intl.DateTimeFormat('en-US', {'month': 'long'}).format(tr.date)]; tr.Day = [tr.date.getDate(), Intl.DateTimeFormat('en-US', {'day': 'numeric'}).format(tr.date)]; tr.Year = [tr.date.getYear(), Intl.DateTimeFormat('en-US', {'year': 'numeric'}).format(tr.date)]; tr.Time = [['Midday', 'Evening'].indexOf(x[0][1]), x[0][1]]; tr.Result = [Number(x[1].join('')), x[1].join('')];
                      [tr.Weekday, tr.Month, tr.Day, tr.Year, tr.Time, tr.Result].map((x) => x[1]).map((y) => {const td = document.createElement('td'); td.className = 't-data';
                     td.textContent = y; tr.appendChild(td)}); table.appendChild(tr)})
-                     }
-                     
+               }
                      // Erase Sort // 
-                     symbol.innerHTML === '' 
-                     Array.prototype.map.call(t_header.children, (x) => x.style.color = 'antiquewhite')
+                symbol.innerHTML === '' 
+                Array.prototype.map.call(t_header.children, (x) => x.style.color = 'antiquewhite')
             
             }
          
@@ -83,11 +81,11 @@ function SetUp(){
            }  
             
         }
-           
         input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){Search_NY()}}) 
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
-
 }
 
-window.onload = 
-SetUp()
+window.onload = function(){
+    SetUp()
+    input.focus()
+}
