@@ -87,5 +87,4 @@ function SetUp(){
 
 window.onload = function(){
     SetUp()
-    input.focus()
 }
