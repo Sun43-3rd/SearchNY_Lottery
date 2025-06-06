@@ -17,8 +17,9 @@ function SetUp(){
         let search = input.value;
             
             if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1) || search.toLowerCase().includes('date'))
-                {const new_search = (!search.toLowerCase().includes('date') ? search.toLowerCase() : (search.toLowerCase().replaceAll(" ", "").replace('date', "").length <= 2 ? " " + search.toLowerCase().replaceAll(" ", "").replace('date', "") + "," : search.toLowerCase().replaceAll(" ", "").replace('date', "")))
-                    results = data.filter((x) => x[0].join(' ').toLowerCase().includes(new_search)); 
+                {const new_search = search.toLowerCase().replaceAll('date', '').replaceAll(',', '').split(' ')
+                    results = data.filter((x) => new_search.every((y) =>
+                        {const e_date = x.join(',').toLowerCase().split(',').map((z) => z.split(' ')).flat(2); return e_date.includes(y)})); 
             }
 
             else{
