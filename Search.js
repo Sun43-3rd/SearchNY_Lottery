@@ -19,7 +19,7 @@ function SetUp(){
             if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1) || search.toLowerCase().includes('date'))
                 {const new_search = search.toLowerCase().replaceAll('date', '').replaceAll(',', '').split(' ')
                     results = data.filter((x) => new_search.every((y) =>
-                        {const e_date = x.join(',').toLowerCase().split(',').map((z) => z.split(' ')).flat(2); return e_date.includes(y)})); 
+                        {const e_date = x[0].join(',').toLowerCase().split(',').map((z) => z.split(' ')).flat(2); return e_date.includes(y)})); 
             }
 
             else{
