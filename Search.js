@@ -51,7 +51,7 @@ function SetUp(){
                }
                      // Erase Sort // 
                 symbol.innerHTML === '' 
-                Array.prototype.map.call(t_header.children, (x) => x.style.color = 'antiquewhite')
+                Array.prototype.map.call(t_header.children, (x) => x.style.color = 'white')
             
     }
          
