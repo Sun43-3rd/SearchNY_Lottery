@@ -89,8 +89,9 @@ function SetUp(){
     }
         
         input.addEventListener('keydown', (event) => {
-            if(event.key === 'Enter'){ 
-               Search_NY()
+            if(event.key === 'Enter'){
+                event.preventDefault()
+               Search_NY() 
             }
         }) 
     
@@ -99,6 +100,7 @@ function SetUp(){
 }
 
 window.onload = SetUp()
+
 
 
 
