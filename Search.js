@@ -88,15 +88,17 @@ function SetUp(){
             
     }
         
-        input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){ 
-            event.preventDefault()
-            this.form.submit()
-            Search_NY()
-        }}) 
+        input.addEventListener('keydown', (event) => {
+            if(event.key === 'Enter'){ 
+               window.location.hash = '#=' + encodeURIComponent(search);
+               Search_NY()
+            }
+        }) 
+    
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
         input.focus()
 }
 
- 
 window.onload = SetUp()
+
 
