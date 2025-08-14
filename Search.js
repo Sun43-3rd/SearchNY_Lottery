@@ -90,7 +90,7 @@ function SetUp(){
         
         input.addEventListener('keydown', (event) => {
             if(event.key === 'Enter'){ 
-               window.location.hash = '#=' + encodeURIComponent(search);
+               window.location.hash = '#=' + encodeURIComponent(this.value);
                Search_NY()
             }
         }) 
@@ -100,5 +100,6 @@ function SetUp(){
 }
 
 window.onload = SetUp()
+
 
 
