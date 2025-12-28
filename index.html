@@ -2,38 +2,282 @@
 <html> 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" shrink-to-fit="no", maximum-scale="1" />
-        <link rel="stylesheet" href="/SearchNY_Lottery/web.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
         <title>SearchNY_Lottery</title>
+
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     </head>
+
+    <style>
+
+    html, body{
+        width: 100%;
+        margin: 0; 
+    }
+
+    :root{
+        --white: rgb(240, 240, 240);
+    }
+
+    body *{
+        box-sizing: border-box;
+    }
+
+    body{
+
+        background-color: #06214d;
+        color: var(--white);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+      
+        padding-left: calc(10% - 30px);
+        padding-right: calc(10% - 30px) ;
+        box-sizing: border-box;
+    }
+
+    td{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    #T-Header{
+        font-weight: 600;
+    }
+
+    .Nav-Item{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        font-size: 18px;
+        font-weight: 600;
+        
+        max-width: 300px;
+    }
+
+    .Item-Label{
+        display: flex;
+        background-color: #06214d;
+        color: white;
+    }
+
+    .info{
+        display: block;
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM288 224C288 206.3 302.3 192 320 192C337.7 192 352 206.3 352 224C352 241.7 337.7 256 320 256C302.3 256 288 241.7 288 224zM280 288L328 288C341.3 288 352 298.7 352 312L352 400L360 400C373.3 400 384 410.7 384 424C384 437.3 373.3 448 360 448L280 448C266.7 448 256 437.3 256 424C256 410.7 266.7 400 280 400L304 400L304 336L280 336C266.7 336 256 325.3 256 312C256 298.7 266.7 288 280 288z" fill="white"/></svg> ');
+        width: 25px;
+        height: 25px;
+        aspect-ratio: 1/1;
+        margin: 2px 8px 2px 2px;
+    }
+
+    .Item-Icon.info:hover{
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM288 224C288 206.3 302.3 192 320 192C337.7 192 352 206.3 352 224C352 241.7 337.7 256 320 256C302.3 256 288 241.7 288 224zM280 288L328 288C341.3 288 352 298.7 352 312L352 400L360 400C373.3 400 384 410.7 384 424C384 437.3 373.3 448 360 448L280 448C266.7 448 256 437.3 256 424C256 410.7 266.7 400 280 400L304 400L304 336L280 336C266.7 336 256 325.3 256 312C256 298.7 266.7 288 280 288z" fill="lightgray"/></svg> ');
+    }
+
+    .Floating-Info{
+        display: flex;
+        flex-direction: row;
+        padding: 5px 5px 5px 5px;
+        position: relative;
+        width: fit-content;
+        max-width: 500px;
+        max-height: 300px;
+        background-color: #06214d;
+    }
+
+    .Floating-Info > p{
+        margin-left: 6px;
+        margin-right: 6px;
+        color: rgb(218, 218, 215);
+    }
+
+    #input{
+       color: white;
+    }
+
+    select{
+      
+        border: none;
+    }
+
+    .Wrapper-1{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        column-gap: 5%;
+        width: 100%;
+        
+        margin-bottom: 35px;
+    }
+
+    .Wrapper-0{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        column-gap: 5%;
+        row-gap: 5px;
+        width: 100%;
+        border: 1px solid white;
+        padding: 10px 10px 10px 10px;
+        margin-bottom: 20px;
+    }
+
+    .Wrapper-0 button{
+        margin-left: auto;
+    }
+
+    .Wrapper-0-Infos{
+        display: flex;
+        flex-direction: column;
+       
+    }
+
+    #sort{
+        font-size: 24px;
+        position: relative;
+        top: -7px;
+    }
+
+    .Wrapper-2{
+        padding-top: 2%;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        width: 100%;
+        min-width: 280px;
+        max-width: 750px;
+        position: relative;
+
+        
+    }
+
+    table{
+        width: 100%;
+    }
+
+    tbody{
+        display: grid;
+    }
+
+    td{
+
+        display: flex;
+        justify-content: center;
+        column-gap: 10px;
+    }
+
+    tr{
+        display: grid;
+        width: 100%;
+        min-width: 100%; 
+        grid-template-columns: 23% 22% 11% 13% 18% 13%;
+        border-bottom: 2px solid rgb(179, 179, 179);
+        height: 25px;
+    }
+
+    input.form-control {
+        background-color: transparent;
+        color: white;
+    }
+
+    input.form-control:focus {
+        background-color: transparent;
+        
+    }
+
+    .hidden{
+        visibility: hidden;
+    }
+
+
+
+    </style>
     <body>
         <div class="Wrapper-2">
             <div class="Wrapper-1">
-                <div class="Nav-Item">
-                    <span class="Label">Search:</span>
-                        <input id="input" type="search" name="#">
+                <div class="Wrapper-0">
+                    <div class="Nav-Item input-group" style="min-width: 200px; max-width:350px; flex: 2; ">
+                        <div class="Item-Label input-group-text">
+                            <i class="Item-Icon info" data-bs-toggle="collapse" data-bs-target="#Info-1" aria-expanded="false" aria-controls="Info-1"></i>
+                            <span class="Label">Search:</span>
+                        </div>
+                        
+                        <input id="input" class="form-control" type="search" name="q">   
+                    </div>
+                    <div class="Nav-Item input-group" style="min-width: 235px; flex: 3; max-width: 250px;">
+                        <div class="Item-Label input-group-text">
+                            <i class="Item-Icon info" data-bs-toggle="collapse" data-bs-target="#Info-2" aria-expanded="false" aria-controls="Info-2"></i> 
+                            <span class="Label">Drawing:</span>
+                        </div>
+                        <select id="Select-Game" class="form-control">
+                            <option value= "3" > Numbers </option>
+                            <option value= "4" > Win4 </option>
+                        </select>
+                    </div>
+                    <div class="Nav-Item input-group" style="min-width: 100px;">
+                        <div class="Item-Label input-group-text">
+                            <i class="Item-Icon info" data-bs-toggle="collapse" data-bs-target="#Info-3" aria-expanded="false" aria-controls="Info-3"></i>
+                            <span class="Label">Box Results?</span>
+                        </div>
+                        
+                        <div class="form-control" style="width: 40px; max-width: 40px;">
+                            <input id="Box"  type="checkbox">
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary"> Submit </button>
                 </div>
-                 
-                <div class="Nav-Item">
-                    <span class="Label">Drawing:</span>
-                    <select id="Select-Game">
-                        <option value= "3" > Numbers </option>
-                        <option value= "4" > Win4 </option>
-                    </select>
-                </div>
-                <div class="Nav-Item">
-                    <span class="Label">Accept Box</span>
-                    <input id="Box" type="checkbox">
+
+                <div class="Wrapper-0-Infos">
+
+                    <div id="Info-1" class="Floating-Info collapse">
+                        <i class="info"></i>
+                        <p>
+                            Search 
+                            <br>
+                            <br>
+                                ... For Drawing
+                            <br>
+                            
+                            <br>
+                                ... For Date
+                        </p>
+                    </div>
+                    <div id="Info-2" class="Floating-Info collapse">
+                        <i class="info"></i>
+                        <p>
+                            
+                            Drawing Selection
+                            <br>
+                            Choose the name of the 'drawing' game within the New York Lottery you want results for.
+                        </p>
+                    </div>
+                    <div id="Info-3" class="Floating-Info collapse">
+                        <i class="info"></i>
+                        <p>
+                           Box Results?
+                           <br>
+                           When checked, the 'box' winnings of the search is also pulled into the results.
+                        </p>
+                    </div>
                 </div>
             </div>
-                <table>
-                    <tbody id="table">
-                        <tr id="T-Header">
-                            <td><span>Weekday</span></td><td><span>Month</span></td><td><span>Day</span></td><td><span>Year</span><span id="sort"></span></td><td><span>Time</span></td><td><span>Result</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <table>
+                <tbody id="table">
+                    <tr id="T-Header">
+                        <td><span>Weekday</span></td><td><span>Month</span></td><td><span>Day</span></td><td><span>Year</span><span id="sort"></span></td><td><span>Time</span></td><td><span>Result</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
         <script type="module" src="/SearchNY_Lottery/Search.js" ></script>
     </body>
 </html>

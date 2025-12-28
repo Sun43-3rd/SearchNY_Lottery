@@ -11,11 +11,17 @@ function SetUp(){
     const symbol = document.getElementById('sort'); let results = [];
 
     function Search_NY(){
+        
+        let search = input.value;
+        location.hash = input.value;
+
         const drawing = (game.value == '3' ? Arch.NY3_Drawings: game.value == '4' ? Arch.NY4_Drawings : isNaN())
         const date = (game.value == '3' || game.value == '4' ? Get_Dates(drawing[0], game.value) : isNaN());
         const data = (game.value == '3' || game.value == '4' ? drawing[1].map((x, i) => [date[i], x, Tools.Box_C(x)]) : isNaN())
-        let search = input.value;
-            
+        
+
+
+        
             if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1) || search.toLowerCase().includes('date'))
                 {const new_search = (!search.toLowerCase().includes('date') ? search.toLowerCase() : (search.toLowerCase().replaceAll(" ", "").replace('date', "").length <= 2 ? " " + search.toLowerCase().replaceAll(" ", "").replace('date', "") + "," : search.toLowerCase().replaceAll(" ", "").replace('date', "")))
                     results = data.filter((x) => x[0].join(' ').toLowerCase().includes(new_search)); 
@@ -87,7 +93,7 @@ function SetUp(){
             
     }
         
-        input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){Search_NY()}}) 
+        input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){Search_NY()}})
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
         input.focus()
 }
