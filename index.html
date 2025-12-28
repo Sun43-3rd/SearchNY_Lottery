@@ -2,7 +2,7 @@
 <html> 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=0.9" />
         
         <title>SearchNY_Lottery</title>
 
@@ -17,18 +17,16 @@
         margin: 0; 
     }
 
-    :root{
-        --white: rgb(240, 240, 240);
-    }
-
     body *{
         box-sizing: border-box;
     }
 
+    
+
     body{
 
         background-color: #06214d;
-        color: var(--white);
+        color: white;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 14px;
       
@@ -36,6 +34,11 @@
         padding-right: calc(10% - 30px) ;
         box-sizing: border-box;
     }
+    body input, body .form-control, body.form-control{
+        background-color: #164283;
+        color: white;
+    }
+
 
     td{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -95,10 +98,11 @@
 
     #input{
        color: white;
+       background-color: #164283;
     }
 
     select{
-      
+      background-color: #164283;
         border: none;
     }
 
@@ -110,7 +114,8 @@
         column-gap: 5%;
         width: 100%;
         
-        margin-bottom: 35px;
+        margin-bottom: 20px;
+        
     }
 
     .Wrapper-0{
@@ -124,6 +129,7 @@
         border: 1px solid white;
         padding: 10px 10px 10px 10px;
         margin-bottom: 20px;
+        border-radius: 10px 10px 10px 10px;
     }
 
     .Wrapper-0 button{
@@ -191,6 +197,7 @@
         background-color: transparent;
         
     }
+    button.btn{ border-color: white; color: white; background-color: #164283;}
 
     .hidden{
         visibility: hidden;
@@ -231,7 +238,7 @@
                             <input id="Box"  type="checkbox">
                         </div>
                     </div>
-                    <button class="btn btn-secondary"> Submit </button>
+                    <button id="Submit" class="btn btn-primary"> Submit </button>
                 </div>
 
                 <div class="Wrapper-0-Infos">

@@ -7,7 +7,7 @@ function SetUp(){
     function Get_Dates(x, y){return x.filter((x) => x[(y == 3 ? 'evening_daily':'evening_win_4')] !== undefined).map((x) => x[(y == 3 ? 'midday_daily':'midday_win_4')] !== undefined? [[new Date(x['draw_date']), 'Evening'], [new Date(x['draw_date']), 'Midday']] : [[new Date(x['draw_date']), 'Evening']]).flat().map((x) => [x[0].toLocaleDateString('en-US', options), x[1]])
     }
 
-    const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input"); const table = document.getElementById('table'); const t_header = document.getElementById('T-Header');
+    const game = document.getElementById("Select-Game"); const b_check = document.getElementById("Box"); const input = document.getElementById("input"); const submit = document.getElementById("Submit"); const table = document.getElementById('table'); const t_header = document.getElementById('T-Header');
     const symbol = document.getElementById('sort'); let results = [];
 
     function Search_NY(){
@@ -94,8 +94,11 @@ function SetUp(){
     }
         
         input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){Search_NY()}})
+        submit.addEventListener('click', (event) => {Search_NY()})
+        window.addEventListener('click', (event) => {Array.prototype.map.call(document.querySelector('.Wrapper-0-Infos').children, (x) => {x.classList.contains('show') ? x.classList.remove('show') : x})})
         Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
         input.focus()
+       
 }
 
  
