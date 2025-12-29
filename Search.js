@@ -11,23 +11,46 @@ function SetUp(){
     const symbol = document.getElementById('sort'); let results = [];
 
     function Search_NY(){
+        // Disable input and Submit button for now
+        input.disabled = true; submit.disabled = true;
         
-        let search = input.value;
-        location.hash = input.value;
+        // Change Hash in Url 
+        location.hash = input.value.toString().trim();
 
+        // Start Search 
+        let search = input.value.toString().trim().toLowerCase();
         const drawing = (game.value == '3' ? Arch.NY3_Drawings: game.value == '4' ? Arch.NY4_Drawings : isNaN())
         const date = (game.value == '3' || game.value == '4' ? Get_Dates(drawing[0], game.value) : isNaN());
         const data = (game.value == '3' || game.value == '4' ? drawing[1].map((x, i) => [date[i], x, Tools.Box_C(x)]) : isNaN())
         
-
-
+        // If Search isn't a searchable value, default to This Years Drawings 
+        search = (search.search(/[A-Za-z]/) === -1 && search.search(/[0-9]/) === -1) ? 'date 2025' : search 
         
-            if((search.search(/[A-Za-z]/) !== '!' && search.search(/[A-Za-z]/) !== -1) || search.toLowerCase().includes('date'))
-                {const new_search = search.toLowerCase().replaceAll('date', '').replaceAll(',', '').split(' ')
-                    results = data.filter((x) => new_search.every((y) =>
-                        {const e_date = x[0].join(',').toLowerCase().split(',').map((z) => z.split(' ')).flat(2); return e_date.includes(y)})); 
-            }
+        // Search By Speach clean up 
 
+        search = search.replaceAll('search', '').replace('for', '')
+
+        //show actual search value
+
+        input.value = search
+
+            if( // Do a Date Search if search contains alphabetical Characters or includes the string 'date' in any order or capitalization 
+                ( search.search(/[A-Za-z]/) !== -1) || search.includes('date') ){
+                    if ( search.includes('past') || search.includes('<') ) {
+                        
+                    } 
+                    else{
+                    const new_search = search.replaceAll('date', '').replaceAll(',', '').split(' ')
+                    results = data.filter((x) => new_search.every((y) =>
+                        {
+                            const e_date = x[0].join(',').toLowerCase().split(',').map((z) => z.split(' ')).flat(2); 
+                            return e_date.includes(y)
+                        }
+                    )
+                    ); 
+                    }
+            }
+                
             else{
                 search = search.split('')
                 b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = (search.length < game.value ? data.filter((x) => x[1].join('').includes(search.join(''))) : data.filter((x) => Tools.Match_ArExact(x[1], search)))
@@ -58,9 +81,35 @@ function SetUp(){
                      // Erase Sort // 
                 symbol.innerHTML === '' 
                 Array.prototype.map.call(t_header.children, (x) => x.style.color = 'white')
-            
+        
+        // Enable Input and Submit Button
+        input.disabled = false; submit.disabled = false;
     }
-         
+    //
+
+    Search_NY.Timed = (sec) => {
+        let timer = {}
+        timer.current = 0
+        timer.cancel = () => { clearTimeout(timer.session); clearInterval(timer.argument); }
+        timer.start = () => {
+            timer.session = setTimeout(() => {
+                Search_NY()
+            }, sec * 1000)
+            timer.argument()
+        }
+    
+        timer.argument = () => setInterval(() => {
+            // if session is finished
+            if( timer.current > (sec * 1000)){ timer.cancel()}
+            if( document.activeElement !== input ){
+                timer.cancel()
+            }
+            timer.current++
+        }, 1)
+
+        timer.start()
+    }
+    
     function Sort_By(column){
         const rows = Array.prototype.filter.call(table.children,(x) => x !== t_header);
         const up = String.fromCharCode(8593); const down = String.fromCharCode(8595)
@@ -94,17 +143,24 @@ function SetUp(){
             
     }
         
-        input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){Search_NY()}})
-        submit.addEventListener('click', (event) => {Search_NY()})
-        window.addEventListener('click', (event) => {Array.prototype.map.call(document.querySelector('.Wrapper-0-Infos').children, (x) => {x.classList.contains('show') ? x.classList.remove('show') : x})})
-        Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => {Sort_By(x)}))
+        input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){
+                Search_NY()                                       
+            }
+        })
+    
+        submit.addEventListener('click', (event) => { Search_NY() })
+        // input focus automatic Search
+        input.addEventListener('focus', (event) => { Search_NY.Timed(15) })
+        window.addEventListener('click', (event) => { Array.prototype.map.call(document.querySelector('.Wrapper-0-Infos').children, (x) => {x.classList.contains('show') ? x.classList.remove('show') : x}) })
+        Array.prototype.map.call(t_header.children, ((x) => x.onclick = () => { Sort_By(x) }))
         input.focus()
+
+        
+      
        
 }
 
 window.onload = SetUp()
-
-
 
 
 

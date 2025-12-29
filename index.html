@@ -34,6 +34,7 @@
         padding-right: calc(10% - 30px) ;
         box-sizing: border-box;
     }
+
     body input, body .form-control, body.form-control{
         background-color: #164283;
         color: white;
@@ -136,10 +137,29 @@
         margin-left: auto;
     }
 
-    .Wrapper-0-Infos{
+    .Wrapper-0-Infos, .Wrapper-0-Filters{
         display: flex;
         flex-direction: column;
        
+    }
+
+    .Wrapper-0-Filters{
+        display: none;
+        width: 100%;
+        height: 38px;
+    }
+
+    .Wrapper-0-Filters > div.Item-Label{
+        width: 100%;
+        height: 100%;
+    }
+    .Wrapper-0-Filters  div.input-group {
+        height: 100%;
+        
+    }
+
+    .Wrapper-0-Filters div.input-group-text, .Wrapper-0-Filters select.form-control{
+        font-size: 14px;
     }
 
     #sort{
@@ -238,9 +258,60 @@
                             <input id="Box"  type="checkbox">
                         </div>
                     </div>
+                    
+                   
                     <button id="Submit" class="btn btn-primary"> Submit </button>
+                    
                 </div>
+                <div class="Wrapper-0-Filters">
+                    <div class="Item-Label btn-group">
+                            <div class="input-group" style="min-width: 180px; flex: 3; max-width: 180px;">
+                                <div class="Item-Label input-group-text">
+                                    <span class="Label">Weekday</span>
+                                </div>
+                                <select id="Filter-Weekday" class="form-control">
+                                    <option> Wednesday</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="min-width: 160px; flex: 3; max-width: 175px;">
+                                <div class="Item-Label input-group-text">
+                                    <span class="Label">Month</span>
+                                </div>
+                                <select id="Filter-Month" class="form-control">
+                                    <option>December</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="min-width: 100px; flex: 3; max-width: 150px;">
+                                <div class="Item-Label input-group-text">
+                                    <span class="Label">Day</span>
+                                </div>
+                                <select id="Filter-Day" class="form-control">
 
+                                </select>
+                            </div>
+                            <div class="input-group" style="min-width: 100px; flex: 3; max-width: 150px;">
+                                <div class="Item-Label input-group-text">
+                                    <span class="Label">Year</span>
+                                </div>
+                                <select id="Filter-Year" class="form-control">
+                                </select>
+                            </div>
+                            <div class="input-group" style="min-width: 120px; flex: 3; max-width: 150px;">
+                                <div class="Item-Label input-group-text">
+                                    <span class="Label">Time</span>
+                                </div>
+                                <select id="Filter-Time" class="form-control">
+                                </select>
+                            </div>
+                            <div class="input-group" style="min-width: 100px; flex: 3; max-width: 250px;">
+                                <div class="Item-Label input-group-text">
+                                    <span class="Label">Result</span>
+                                </div>
+                                <select id="Filter-Result" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                </div>
                 <div class="Wrapper-0-Infos">
 
                     <div id="Info-1" class="Floating-Info collapse">
@@ -251,7 +322,7 @@
                             <br>
                                 ... For Drawing
                             <br>
-                            
+                                
                             <br>
                                 ... For Date
                         </p>
@@ -274,6 +345,7 @@
                         </p>
                     </div>
                 </div>
+
             </div>
             <table>
                 <tbody id="table">
