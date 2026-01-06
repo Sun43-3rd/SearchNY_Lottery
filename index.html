@@ -108,13 +108,19 @@
         color: white;
     }
 
+    .Item-Label > span.Label {
+        margin-left : 6px;
+    }
+
     .info{
         display: block;
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM288 224C288 206.3 302.3 192 320 192C337.7 192 352 206.3 352 224C352 241.7 337.7 256 320 256C302.3 256 288 241.7 288 224zM280 288L328 288C341.3 288 352 298.7 352 312L352 400L360 400C373.3 400 384 410.7 384 424C384 437.3 373.3 448 360 448L280 448C266.7 448 256 437.3 256 424C256 410.7 266.7 400 280 400L304 400L304 336L280 336C266.7 336 256 325.3 256 312C256 298.7 266.7 288 280 288z" fill="white"/></svg> ');
+        background-position: center;
+        background-repeat: no-repeat;
         width: 25px;
         height: 25px;
         aspect-ratio: 1/1;
-        margin: 2px 8px 2px 2px;
+        margin: 2px 2px 2px 2px;
     }
 
     .Item-Icon.info:hover{
@@ -166,7 +172,7 @@
         flex-wrap: wrap;
         justify-content: flex-start;
         column-gap: 5%;
-        row-gap: 5px;
+        row-gap: 10px;
         width: 100%;
         border: 1px solid white;
         padding: 10px 10px 10px 10px;
@@ -270,7 +276,7 @@
         <div class="Wrapper-2">
             <div class="Wrapper-1">
                 <div class="Wrapper-0">
-                    <div class="Nav-Item input-group" style="min-width: 200px; max-width:350px; flex: 2; ">
+                    <div class="Nav-Item input-group" style="min-width: 235px; max-width:350px; flex: 2; ">
                         <div class="Item-Label input-group-text">
                             <i class="Item-Icon info" data-bs-toggle="collapse" data-bs-target="#Info-1" aria-expanded="false" aria-controls="Info-1"></i>
                             <span class="Label">Search:</span>
@@ -298,13 +304,21 @@
                             <input id="Box"  type="checkbox">
                         </div>
                     </div>
-                    
-                   
+        
                     <button id="Submit" class="btn btn-primary"> Submit </button>
                     
                 </div>
                 <div class="Wrapper-0-Filters">
-                    
+                    <div class="Nav-Item input-group" style="min-width: 150px; flex: 1; max-width: 180px;">
+                        <div class="Item-Label input-group-text">
+                            <button class="btn"> <span class="Label">Export</span></button>
+                        </div>
+                        <select id="Select-Game" class="form-control">
+                            <option value= ".pdf"  selected> PDF </option>
+                            <option value= ".txt" > Text </option>
+                            <option value= ".csv" > CSV </option>
+                        </select>
+                    </div>
                 </div>
                 <div class="Wrapper-0-Infos">
 
@@ -348,11 +362,13 @@
                 </div>
 
             </div>
-            <div style="margin-right: auto; position: relative; top: 5px;">
-                <i class="info"></i>
-            </div>
-            <div id="Table-Carousel" class="carousel slide">
+            
+            <div id="Table-Carousel" class="carousel slide" data-bs-touch="false">
+                <div style="margin-right: auto; position: absolute; top: 15px;">
+                    <i class="info"></i>
+                </div>
                  <div class="carousel-indicators">
+                    
                     <button type="button" data-bs-target="#Table-Carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"> Result</button>
                     <button type="button" data-bs-target="#Table-Carousel" data-bs-slide-to="1" aria-label="Slide 2"> Saved </button>
                  </div>

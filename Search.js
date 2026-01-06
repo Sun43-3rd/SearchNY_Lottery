@@ -39,28 +39,37 @@ function SetUp(){
 
         input.value = search
 
+            // CATCH Search as if Spoken and Filter
+            if ( search.includes('past') || search.includes('last') || search.includes('ago') || search.includes('yesterday') ) {
+                search.filter = search
+                search.filter_keywords.map((x) => search.replace(x, ''));
+            } 
+
             if( // Do a Date Search if search contains alphabetical Characters or includes the string 'date' in any order or capitalization 
                 ( search.search(/[A-Za-z]/) !== -1) || search.includes('date') ){
-                    if ( search.includes('past') || search.includes('<') ) {
-                        
-                    } 
-                    else{
+
                     const new_search = search.replaceAll('date', '').replaceAll(',', '').split(' ')
                     results = data.filter((x) => new_search.every((y) =>
                         {
                             const e_date = x[0].join(',').toLowerCase().split(',').map((z) => z.split(' ')).flat(2); 
                             return e_date.includes(y)
                         }
-                    )
-                    ); 
-                    }
+                    )); 
             }
                 
-            else{ // Number Search
-
+            else{ // Result Column Search
                 search = search.split('');
                 b_check.checked === true? results = Tools.Box_BCode(data, 2, search) : results = (search.length < game.value ? data.filter((x) => x[1].join('').includes(search.join(''))) : data.filter((x) => Tools.Match_ArExact(x[1], search)))
             };
+
+
+            // Check Filter & Filter Results
+
+            if(search.filter !== undefined){
+            
+            
+            }
+
         
         // Erase Past Results
         Array.prototype.filter.call(result_table.children, (x) => x.id !== 'result-table-Header' && x.id !== 'NA').map((x) => x.remove())
