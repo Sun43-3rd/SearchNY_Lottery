@@ -14,9 +14,11 @@ function SetUp(){
     const saved_table_header = document.getElementById('saved-table-Header');
     const symbol = document.getElementById('sort'); let results = [];
 
+    
+
     function Search_NY(){
         // Disable input and Submit button for now
-        input.disabled = true; submit.disabled = true;
+        input.disabled = true; submit.disabled = true; 
         
         // Change Hash in Url 
         location.hash = input.value.toString().trim();
@@ -27,7 +29,7 @@ function SetUp(){
         const date = (game.value == '3' || game.value == '4' ? Get_Dates(drawing[0], game.value) : isNaN());
         const data = (game.value == '3' || game.value == '4' ? drawing[1].map((x, i) => [date[i], x, Tools.Box_C(x)]) : isNaN())
         
-        console.log(data), console.log(date), console.log(drawing);
+        //console.log(data), console.log(date), console.log(drawing);
         // If Search isn't a searchable value, default to This Years Drawings 
         search = (search.search(/[A-Za-z]/) === -1 && search.search(/[0-9]/) === -1) ? 'date 2025' : search 
         
@@ -64,18 +66,21 @@ function SetUp(){
 
 
             // Check Filter & Filter Results
-
             if(search.filter !== undefined){
             
             
             }
 
         
-        // Erase Past Results
+        // Erase Table // No Results Available
         Array.prototype.filter.call(result_table.children, (x) => x.id !== 'result-table-Header' && x.id !== 'NA').map((x) => x.remove())
+        
             
             if(results.length === 0){
-                const span = document.createElement('span'); span.id ='NA'; span.innerHTML = 'N/A'; span.style.fontSize = '24pt'; 
+                
+                result_t_header.classList.remove('body-row')
+
+                const span = document.createElement('span'); span.id ='NA'; span.innerHTML = 'No Results Available'; span.style.fontSize = '24pt'; 
                 
                 if(Array.prototype.find.call(result_table.children, (x) => x.id === 'NA') !== undefined){  
                     document.getElementById('NA').toggleAttribute('hidden')
@@ -85,11 +90,23 @@ function SetUp(){
                 }
 
            else{
+            // Header Table Checkbox Revealed
+            if(!result_t_header.classList.contains('body-row')){
+                result_t_header.classList.add('body-row')
+                const checkbox_td = document.createElement('td'); result_t_header.prepend(checkbox_td);
+                const checkbox = document.createElement('input'); checkbox.type = 'checkbox'; result_t_header.firstElementChild.append(checkbox);
+            }
+            else{
+                Array(...result_t_header.children)[0].firstElementChild.checked = false;
+                Array(...result_t_header.children)[0].firstElementChild.indeterminate = false;
+            }
+            
+            // Add Results to Table
                Array.prototype.filter.call(result_table.children, (x) => x.id !== 'result-table-Header').map((x) => x.remove());
                
                 results.map((x) => 
                     {
-                        const tr = document.createElement('tr');  tr.copy = '';// copy placeholder for proper deletion
+                        const tr = document.createElement('tr'); tr.copy = '';
                        
                         // Create and Add Save Checkbox
                         const option = document.createElement('td'); const save_checkbox = document.createElement('input'); save_checkbox.type = 'checkbox';
@@ -99,19 +116,47 @@ function SetUp(){
                             
                             // Add Copy when Checked and remove Copy when checked is false
                             if(save_checkbox.checked){
-                                // Create Copy 
-                                let copy_tr = tr.cloneNode(true); copy_tr.removeChild(copy_tr.firstChild); copy_tr.className = 'copy';
-                                Object.assign(copy_tr, tr)
-                               
-                                tr.copy = copy_tr
-                                saved_table.appendChild(copy_tr)
-                                Array.prototype.map.call(tr.children, (x) => {x.style.color = 'grey'})
+
+                                // Found Repeat 
+                                if(Array(...saved_table.children).slice(1).find((x) => [tr.Weekday, tr.Month, tr.Day, tr.Year, tr.Time, tr.Result].every((y) => [x.Weekday, x.Month, x.Day, x.Year, x.Time, x.Result].map((z) => z[0]).includes(y[0]) ))){
+                                    save_checkbox.checked = true;
+                                }
+                                else{
+
+                                    // Create Copy 
+                                    let copy_tr = tr.cloneNode(true); copy_tr.removeChild(copy_tr.firstChild); copy_tr.className = 'copy';
+                                    Object.assign(copy_tr, tr)
+                                
+                                    tr.copy = copy_tr; 
+                                    saved_table.appendChild(copy_tr)
+                                    Array.prototype.map.call(tr.children, (x) => {x.style.color = 'grey'})
+                                }
                             }
                             if(!save_checkbox.checked){
                                 Array.prototype.map.call(tr.children, (x) => {x.style.color = 'white'})
-                                tr.copy.remove()
+                                if(tr.copy === ''){
+                                    console.log([tr.Weekday, tr.Month, tr.Day, tr.Year, tr.Time, tr.Result])
+                                    console.log(Array(...saved_table.children).slice(1))
+                                    console.log(Array(...saved_table.children).slice(1).map((x) => [x.Weekday, x.Month, x.Day, x.Year, x.Time, x.Result]))
+                                    Array(...saved_table.children).slice(1).find((x) => [tr.Weekday, tr.Month, tr.Day, tr.Year, tr.Time, tr.Result].every((y) => [x.Weekday, x.Month, x.Day, x.Year, x.Time, x.Result].map((z) => z[0]).includes(y[0]) )).remove()
+                                } else{
+                                    tr.copy.remove()}
+
                                 
                             }
+
+                            // Intermidiate checkbox
+
+                                if(Array.prototype.filter.call(result_table.children, (x) => x.id !== 'result-table-Header').map((x) => 
+                                        Array(...x.children)[0].firstElementChild
+                                ).filter((x) => x.checked === true).length !== 0 ){ 
+                                Array(...result_t_header.children)[0].firstElementChild.indeterminate = true
+                                
+                                } 
+                                else{
+                                    Array(...result_t_header.children)[0].firstElementChild.indeterminate = false
+                                    Array(...result_t_header.children)[0].firstElementChild.disabled = false
+                                }
 
                             
                         })
@@ -126,8 +171,43 @@ function SetUp(){
                             }); 
 
                         result_table.appendChild(tr)
+
+                        // Saved Table Same Results Removeable
+
+                        if(Array(...saved_table.children).slice(1).find((x) => [tr.Weekday, tr.Month, tr.Day, tr.Year, tr.Time, tr.Result].every((y) => [x.Weekday, x.Month, x.Day, x.Year, x.Time, x.Result].map((z) => z[0]).includes(y[0]) ))){
+                            console.log(Array(...saved_table.children).slice(1))
+                            Array(...result_t_header.children)[0].firstElementChild.indeterminate = true;
+                            Array.prototype.map.call(tr.children, (x) => {x.style.color = 'grey'});
+                            save_checkbox.checked = true;
+                        }
                     })
                }
+
+        // Clear CheckBoxes and Select All
+        console.log(Array(...saved_table.children).slice(1))
+        Array(...result_t_header.children)[0].firstElementChild.addEventListener('click', () => {
+           
+            if(Array(...result_t_header.children)[0].firstElementChild.checked){
+                Array(...result_table.children).slice(1).map((x) => 
+                    {
+                        Array(...x.children)[0].firstElementChild.checked = false;
+                        Array(...x.children)[0].firstElementChild.click()
+                    }
+                )
+
+                Array(...result_t_header.children)[0].firstElementChild.indeterminate = false;
+                Array(...result_t_header.children)[0].firstElementChild.disabled = false;
+
+            } else {
+                Array(...result_table.children).slice(1).map((x) => 
+                    {
+                        Array(...x.children)[0].firstElementChild.checked = true;
+                        Array(...x.children)[0].firstElementChild.click()
+                    }
+                )
+
+            }
+        })
 
         // Erase Sort 
         symbol.innerHTML === '' 
@@ -135,8 +215,10 @@ function SetUp(){
         
         // Enable Input and Submit Button
         input.disabled = false; submit.disabled = false;
+        result_table.focus()
     }
-    //
+
+    // Timed Search
 
     Search_NY.Timed = (sec) => {
         let timer = {}
@@ -168,7 +250,7 @@ function SetUp(){
         const sort_by = column.firstElementChild.innerHTML.trim(); 
       
         Array.prototype.map.call(column.parentElement.children, (x) => x.style.color = 'white')
-           console.log(rows), console.log(sort_by)
+           
         if(symbol.innerHTML === '' || column.lastElementChild.id !== 'sort'){
             symbol.innerHTML = up;  column.style.color = 'silver'; column.appendChild(symbol);
        
@@ -194,6 +276,14 @@ function SetUp(){
         }  
             
     }
+
+
+    // Download Saved Data 
+
+
+
+
+
         // Event Listeners Throughout
         input.addEventListener('keydown', (event) => {if(event.key === 'Enter'){
                 Search_NY()                                       
@@ -209,8 +299,6 @@ function SetUp(){
         input.focus()
 
         
-      
-       
 }
 
 window.onload = SetUp()

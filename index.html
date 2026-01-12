@@ -27,9 +27,9 @@
         color: white;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 14px;
-      
-        padding-left: calc(10% - 30px);
-        padding-right: calc(10% - 30px) ;
+        min-width: 380px;
+        padding-left: calc(10% - 20px);
+        padding-right: calc(10% - 20px) ;
         box-sizing: border-box;
     }
 
@@ -50,6 +50,7 @@
 
         display: flex;
         justify-content: center;
+        align-items: flex-start;
         column-gap: 5px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 14px;
@@ -70,23 +71,13 @@
         grid-template-columns: 23% 22% 11% 13% 18% 13%;
     }
 
-    tbody.table-type-1 tr{
-        grid-template-columns: 3% 23% 22% 11% 13% 18% 13%;
+    tbody.table-type-1 tr, tbody.table-type-1 #result-table-Header.body-row{
+        grid-template-columns: 3% 23% 21% 11% 13% 17% 13%;
     }
 
-    td > i.info{
-       position: relative;
-       top: -6px;
+    td > input[type="checkbox"]{
+       margin-top: 4px;
     }
-
-    td:has(i.info){
-        display: block;
-        width: fit-content;
-        position: absolute;
-        left: 0;
-    }
-
-
 
     #T-Header{
         font-weight: 600;
@@ -249,9 +240,23 @@
         height: fit-content;
         text-indent: 0;
     }
+
+    div.carousel-indicators button[type="button"] {
+	box-sizing: content-box;
+
+	margin-right: 3px;
+	margin-left: 3px;
+	
+	background-clip: padding-box;
+	border: 0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	
+    }
     
     .carousel-item {
         transition: transform 0s;
+        padding-left: 3px;
     }
 
     input.form-control {
@@ -364,19 +369,17 @@
             </div>
             
             <div id="Table-Carousel" class="carousel slide" data-bs-touch="false">
-                <div style="margin-right: auto; position: absolute; top: 15px;">
-                    <i class="info"></i>
-                </div>
+                
                  <div class="carousel-indicators">
-                    
-                    <button type="button" data-bs-target="#Table-Carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"> Result</button>
+                   
+                    <button type="button" data-bs-target="#Table-Carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"> Results </button>
                     <button type="button" data-bs-target="#Table-Carousel" data-bs-slide-to="1" aria-label="Slide 2"> Saved </button>
                  </div>
                 <div class="carousel-inner">
                     <table class="carousel-item active" >
                         <tbody id="result-table" class="table-type-1">
-                            <tr id="result-table-Header" >
-                               <td><span>Weekday</span></td><td><span>Month</span></td><td><span>Day</span></td><td><span>Year</span><span id="sort"></span></td><td><span>Time</span></td><td><span>Result</span></td>
+                            <tr id="result-table-Header">
+                             <td><span>Weekday</span></td><td><span>Month</span></td><td><span>Day</span></td><td><span>Year</span><span id="sort"></span></td><td><span>Time</span></td><td><span>Result</span></td>
                             </tr>
                         </tbody>
                     </table>
